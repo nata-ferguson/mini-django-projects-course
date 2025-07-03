@@ -10,7 +10,7 @@
 
 <h1>Login</h1>
 
-<form method="post">
+<form method="post" class="task-form">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit">Log In</button>
