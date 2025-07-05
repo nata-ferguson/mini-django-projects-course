@@ -52,10 +52,17 @@ class TimesheetCreateView(LoginRequiredMixin, CreateView):
     model = Timesheet
     form_class = TimesheetForm
     template_name = 'tasks/timesheet_form.html'
-    success_url = reverse_lazy('task-list')  # redirect after successful submission
+    success_url = reverse_lazy('timesheet-list')  
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         form.instance.status = 'pending'
         return super().form_valid(form)
 
+class TimesheetListView(LoginRequiredMixin, ListView):
+    model = Timesheet
+    template_name = 'tasks/timesheet_list.html'
+    context_object_name = 'timesheets'
+
+    def get_queryset(self):
+        return Timesheet.objects.filter(user=self.request.user).order_by('-week_start')

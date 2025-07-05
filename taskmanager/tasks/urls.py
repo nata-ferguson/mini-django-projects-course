@@ -4,8 +4,10 @@ from .views import (
     TaskCreateView,
     TaskUpdateView,
     TaskDeleteView,
+    TimesheetCreateView,
+    TimesheetListView
 )
-from .views import TimesheetCreateView
+
 
 
 urlpatterns = [
@@ -14,6 +16,7 @@ urlpatterns = [
     path('<int:pk>/edit/', TaskUpdateView.as_view(), name='task-edit'),
     path('<int:pk>/delete/', TaskDeleteView.as_view(), name='task-delete'),
     path('timesheets/submit/', TimesheetCreateView.as_view(), name='timesheet-submit'),
+    path('timesheets/', TimesheetListView.as_view(), name='timesheet-list'),
 
 ]
 

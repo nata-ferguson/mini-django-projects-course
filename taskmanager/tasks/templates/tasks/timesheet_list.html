@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Timesheets</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>Your Timesheet Submissions</h1>
+
+    {% if timesheets %}
+      <table>
+        <thead>
+          <tr>
+            <th>Week Starting</th>
+            <th>Project</th>
+            <th>Total Hours</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for sheet in timesheets %}
+            <tr>
+              <td>{{ sheet.week_start }}</td>
+              <td>{{ sheet.project }}</td>
+              <td>{{ sheet.total_hours|floatformat:1 }}</td>  
+              <td>{{ sheet.status|title }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No timesheets submitted yet.</p>
+    {% endif %}
+
+    <a href="{% url 'timesheet-submit' %}" class="btn">Submit a New Timesheet</a>
+  </div>
+</body>
+</html>

@@ -5,7 +5,7 @@ class TimesheetForm(forms.ModelForm):
     class Meta:
         model = Timesheet
         fields = [
-            'task',
+            'project',
             'week_start',
             'monday_hours',
             'tuesday_hours',

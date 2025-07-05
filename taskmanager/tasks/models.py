@@ -26,7 +26,7 @@ class Timesheet(models.Model):
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    project = models.CharField(max_length=100)
     week_start = models.DateField()
 
     monday_hours = models.DecimalField(max_digits=5, decimal_places=2, default=0)
@@ -39,6 +39,17 @@ class Timesheet(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
 
     def __str__(self):
-        return f"{self.user.username} – {self.task.title} ({self.week_start})"
+        return f"{self.user.username} – {self.project} ({self.week_start})"
+    
+    @property
+    def total_hours(self):
+        return sum([
+            self.monday_hours or 0,
+            self.tuesday_hours or 0,
+            self.wednesday_hours or 0,
+            self.thursday_hours or 0,
+            self.friday_hours or 0,
+        ])
+
 
   
