@@ -5,7 +5,8 @@ from .views import (
     TaskUpdateView,
     TaskDeleteView,
     TimesheetCreateView,
-    TimesheetListView
+    TimesheetListView,
+    ManagerTimesheetListView
 )
 
 
@@ -17,6 +18,7 @@ urlpatterns = [
     path('<int:pk>/delete/', TaskDeleteView.as_view(), name='task-delete'),
     path('timesheets/submit/', TimesheetCreateView.as_view(), name='timesheet-submit'),
     path('timesheets/', TimesheetListView.as_view(), name='timesheet-list'),
+    path('timesheets/manage/', ManagerTimesheetListView.as_view(), name='timesheet-manager'),
 
 ]
 

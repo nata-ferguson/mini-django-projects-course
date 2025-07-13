@@ -1,12 +1,8 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <title>Delete Task</title>
-</head>
-<body>
-  <div class="container">
+{% extends 'base.html' %}
+
+{% block title %}Task Confirm Detele{% endblock %}
+
+{% block content %}
 
     <h1>Delete Task</h1>
 
@@ -19,6 +15,5 @@
 
     <a href="{% url 'task-list' %}">Cancel</a>
 
-  </div>
-</body>
-</html>
+ {% endblock %}
+

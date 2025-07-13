@@ -1,12 +1,8 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Submit Timesheet</title>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-  <div class="container">
+{% extends 'base.html' %}
+
+{% block title %}Timesheet{% endblock %}
+
+{% block content %}
     <h1>Submit Weekly Timesheet</h1>
 
     <form method="post">
@@ -16,6 +12,5 @@
     </form>
 
     <a href="{% url 'task-list' %}">← Back to Tasks</a>
-  </div>
-</body>
-</html>
+
+{% endblock %}

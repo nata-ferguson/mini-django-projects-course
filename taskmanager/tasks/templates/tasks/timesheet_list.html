@@ -1,12 +1,8 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Your Timesheets</title>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-  <div class="container">
+{% extends 'base.html' %}
+
+{% block title %}Timesheet List{% endblock %}
+
+{% block content %}
     <h1>Your Timesheet Submissions</h1>
 
     {% if timesheets %}
@@ -35,6 +31,4 @@
     {% endif %}
 
     <a href="{% url 'timesheet-submit' %}" class="btn">Submit a New Timesheet</a>
-  </div>
-</body>
-</html>
+{% endblock %}

@@ -66,3 +66,12 @@ class TimesheetListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Timesheet.objects.filter(user=self.request.user).order_by('-week_start')
+    
+class ManagerTimesheetListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
+    model = Timesheet
+    template_name = 'tasks/manager_dashboard.html'
+    context_object_name = 'timesheets'
+
+    def test_func(self):
+        return self.request.user.is_staff
+
