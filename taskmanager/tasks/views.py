@@ -4,6 +4,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .forms import TimesheetForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
 from .models import Task, Timesheet
 
 class TaskListView(LoginRequiredMixin, ListView):
@@ -74,4 +75,25 @@ class ManagerTimesheetListView(LoginRequiredMixin, UserPassesTestMixin, ListView
 
     def test_func(self):
         return self.request.user.is_staff
+    
+    def get_queryset(self):
+        queryset = Timesheet.objects.all()
+        status_filter = self.request.GET.get('status')
+        user_filter = self.request.GET.get('user')
+
+        if status_filter:
+            queryset = queryset.filter(status=status_filter)
+        if user_filter:
+            queryset = queryset.filter(user__username=user_filter)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['statuses'] = Timesheet.STATUS_CHOICES
+        context['users'] = User.objects.order_by('username')
+        context['selected_status'] = self.request.GET.get('status', '')
+        context['selected_user'] = self.request.GET.get('user', '')
+        return context
+
 

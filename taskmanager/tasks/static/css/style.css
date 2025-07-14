@@ -86,4 +86,38 @@ form {
   background-color: #eaf3fa;
 }
 
+.filter-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  margin-bottom: 1.5rem;
+}
+
+.filter-form label {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.filter-form select {
+  background-color: #f0f4f8;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.filter-form button {
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.filter-form button:hover {
+  background-color: #1f5f8b;
+}
+
 
